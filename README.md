@@ -27,6 +27,11 @@ sh run.sh
 sh stop.sh
 ```
 
+更新
+```
+git pull
+```
+
 测试
 ```
 ./v2ray-whmcs
