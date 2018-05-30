@@ -10,6 +10,12 @@ cd v2ray-whmcs-backend
 chmod +x ./*.sh
 ```
 
+setting conf.yaml
+```
+cp conf.yaml.demo conf.yaml  
+vim conf.yaml  
+```
+
 start
 ```
 sh run.sh
