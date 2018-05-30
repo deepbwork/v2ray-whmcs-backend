@@ -1,28 +1,28 @@
 ## 安装说明
-install git
+安装git
 ```
 yum update&&yum install git -y
 ```
 
-download file 
+下载文件
 ```
 git clone https://github.com/deepbwork/v2ray-whmcs-backend.git  
 cd v2ray-whmcs-backend  
 chmod +x ./*.sh
 ```
 
-setting conf.yaml
+设置conf.yaml文件
 ```
 cp conf.yaml.demo conf.yaml  
 vim conf.yaml  
 ```
 
-start
+启动
 ```
 sh run.sh
 ```
 
-stop
+停止
 ```
 sh stop.sh
 ```
@@ -36,3 +36,11 @@ sh stop.sh
 |client|默认|
 |tag|默认|
 |liscense|授权码|
+
+## 日志
+|文件名|描述|
+|:-|:-|
+|access.log|v2ray服务日志|
+|error.log|v2ray服务日志|
+|v2ray-service.log|v2ray启动日志|
+|v2ray-whmcs.log|v2ray操作日志|
