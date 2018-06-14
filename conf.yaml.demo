@@ -1,11 +1,11 @@
 api:
-  url:        https://domain/client/server.php
-  token:      token
+  url:        _URL_
+  token:      _TOKEN_
   node:       1
-  rate:       1
-  database:   database name
+  rate:       _RATE_
+  database:   _DATABASENAME_
 
 v2ray:
   client:     127.0.0.1:23333
   tag:        proxy
-  liscense:   liscense key
+  liscense:   _LISCENSE_
