@@ -11,31 +11,31 @@ cd v2ray-whmcs-backend
 chmod +x ./*.sh
 ```
 
-设置conf.yaml文件
+安装TLS脚本
 ```
-cp conf.yaml.demo conf.yaml  
-vim conf.yaml  
-```
-
-启动
-```
-sh run.sh
+sh deepbwork.sh tls
 ```
 
-停止
+安装BBR
 ```
-sh stop.sh
-```
-
-更新
-```
-git pull
+sh deepbwork.sh bbr
 ```
 
-测试
+配置Conf.yaml文件
 ```
-./v2ray-whmcs
+sh deepbwork.sh init
 ```
+
+启动服务
+```
+sh deepbwork.sh run
+```
+
+停止服务
+```
+sh deepbwork.sh stop
+```
+
 
 ## 配置文件结构
 |参数名|描述|
