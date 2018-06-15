@@ -88,7 +88,7 @@ if [ "$1" == "init" ]; then
 fi
 
 if [ "$1" == "run" ]; then
-  nohup ./v2ray-whmcs > /dev/null 2>&1 &;
+  nohup ./v2ray-whmcs > /dev/null 2>&1 &
   echo "Service Start";
   exit 1;
 fi
