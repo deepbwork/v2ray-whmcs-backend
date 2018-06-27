@@ -71,7 +71,7 @@ if [ "$1" == "init" ]; then
     echo "Set the liscense.";
     read -p "Please enter: " _LISCENSE_;
   done
-  while [ "${_LISCENSE_}" = "" ]
+  while [ "${_TLS_}" = "" ]
   do
     echo "You want use TLS? Please input 1 or 0.";
     read -p "Please enter: [1/0]" _TLS_;
