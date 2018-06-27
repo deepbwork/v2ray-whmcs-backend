@@ -4,6 +4,7 @@ api:
   node:       1
   rate:       _RATE_
   database:   _DATABASENAME_
+  tls:        _TLS_
 
 v2ray:
   client:     127.0.0.1:23333

@@ -71,6 +71,11 @@ if [ "$1" == "init" ]; then
     echo "Set the liscense.";
     read -p "Please enter: " _LISCENSE_;
   done
+  while [ "${_LISCENSE_}" = "" ]
+  do
+    echo "You want use TLS? Please input 1 or 0.";
+    read -p "Please enter: [1/0]" _TLS_;
+  done
 
   echo "set the configuration...";
   cp -f ./conf.yaml.demo ./conf.yaml
@@ -79,6 +84,7 @@ if [ "$1" == "init" ]; then
   sed -i "s#_RATE_#"${_RATE_}"#g" ./conf.yaml;
   sed -i "s#_DATABASENAME_#"${_DATABASENAME_}"#g" ./conf.yaml;
   sed -i "s#_LISCENSE_#"${_LISCENSE_}"#g" ./conf.yaml;
+  sed -i "s#_TLS_#"${_TLS_}"#g" ./conf.yaml;
 
   echo "set configuration done.";
   echo "please input command run service :";
