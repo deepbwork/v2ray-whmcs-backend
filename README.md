@@ -44,6 +44,7 @@ sh deepbwork.sh stop
 |token|与用户数据库通信秘钥|
 |node|节点ID 暂时无用|
 |rate|倍率|
+|tls|是否使用TLS 1:启用 0:关闭|
 |client|默认|
 |tag|默认|
 |liscense|授权码|
