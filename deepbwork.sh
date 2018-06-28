@@ -26,7 +26,10 @@ if [ "$1" == "" ]; then
 fi
 
 if [ "$1" == "tls" ]; then
-  sudo yum -y install socat;
+  echo "Stop firewalld service.";
+  systemctl stop firewalld;
+  echo "Install include."
+  sudo yum -y install epel-release socat;
   curl  https://get.acme.sh | sh;
   while [ "${_DOMAIN_}" = "" ]
   do
