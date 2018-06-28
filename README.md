@@ -1,4 +1,6 @@
 ## 安装说明
+准用系统 Centos 7 +  
+
 安装git
 ```
 yum update&&yum install git -y
