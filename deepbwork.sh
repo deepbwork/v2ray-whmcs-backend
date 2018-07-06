@@ -1,7 +1,7 @@
 #!/bin/bash
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
 export PATH
-
+ln -fs /bin/bash /bin/sh
 # Command Params [init, tls, bbr, run, stop]
 # Can i use? command > sh deepbwork.sh param
 # init : 初始化配置
@@ -11,8 +11,8 @@ export PATH
 # stop : 停止服务
 
 if [ "`cat /etc/redhat-release 2>/dev/null| cut -d\  -f1`" != "CentOS" ]; then
-  echo "Error: The current system is not CentOS";
-  exit 1;
+  echo "The current system is not CentOS, Use Debian Setting";
+  _OS_="debian";
 fi
 
 if [ $(id -u) != "0" ]; then
@@ -26,24 +26,34 @@ if [ "$1" == "" ]; then
 fi
 
 if [ "$1" == "tls" ]; then
-  echo "Stop firewalld service.";
-  systemctl stop firewalld;
+  if [ "${_OS_}" != "debian" ]; then
+    echo "Stop firewalld service.";
+    systemctl stop firewalld;
+  fi
   echo "Install include."
-  sudo yum -y install epel-release socat;
+  if [ "${_OS_}" != "debian" ]; then
+    sudo yum -y install epel-release socat;
+  else
+    apt-get install -y socat;
+  fi
   curl  https://get.acme.sh | sh;
   while [ "${_DOMAIN_}" = "" ]
   do
     echo "Set the domain.";
     read -p "Please enter: " _DOMAIN_;
   done
-  sudo ~/.acme.sh/acme.sh --issue -d ${_DOMAIN_} --standalone -k ec-256;
-  sudo ~/.acme.sh/acme.sh --installcert -d ${_DOMAIN_} --fullchainpath /home/v2ray.crt --keypath /home/v2ray.key --ecc;
+  ~/.acme.sh/acme.sh --issue -d ${_DOMAIN_} --standalone -k ec-256;
+  ~/.acme.sh/acme.sh --installcert -d ${_DOMAIN_} --fullchainpath /home/v2ray.crt --keypath /home/v2ray.key --ecc;
   exit 1;
 fi
 
 if [ "$1" == "bbr" ]; then
   echo "Downloading BBR files...";
-  yum install wget -y;
+  if [ "${_OS_}" != "debian" ]; then
+    yum install wget -y;
+  else
+    apt-get install -y wget ;
+  fi
   wget -P /tmp/ --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh && chmod +x /tmp/bbr.sh && sh /tmp/bbr.sh;
   exit 1;
 fi
@@ -97,7 +107,10 @@ if [ "$1" == "init" ]; then
 fi
 
 if [ "$1" == "run" ]; then
-  systemctl stop firewalld;
+  if [ "${_OS_}" != "debian" ]; then
+    echo "Stop firewalld service.";
+    systemctl stop firewalld;
+  fi
   nohup ./v2ray-whmcs > /dev/null 2>&1 &
   echo "Service Start";
   exit 1;
@@ -107,5 +120,17 @@ if [ "$1" == "stop" ]; then
   kill -9 $(ps -ef | grep v2ray | grep -v grep | awk '{print $2}');
   rm -rf *.log;
   echo "Service Stop";
+  exit 1;
+fi
+
+if [ "$1" == "log" ]; then
+  cat ./v2ray-service.log;
+  cat ./v2ray-whmcs.log;
+  exit 1;
+fi
+
+if [ "$1" == "restart" ]; then
+  sh deepbwork.sh stop;
+  sh deepbwork.sh run;
   exit 1;
 fi

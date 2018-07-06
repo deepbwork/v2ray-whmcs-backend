@@ -1,5 +1,5 @@
 ## 安装说明
-准用系统 Centos 7 +  
+准用系统 Centos 7 + || Debian 7 + 
 
 安装git
 ```
