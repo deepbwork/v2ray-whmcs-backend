@@ -6,6 +6,7 @@ ln -fs /bin/bash /bin/sh
 # Can i use? command > sh deepbwork.sh param
 # init : 初始化配置
 # tls  : 自动配置TLS并安装证书
+# tlsd : 通过DNS安装证书
 # bbr  : 引导安装BBR
 # run  : 启动服务
 # stop : 停止服务
@@ -133,4 +134,22 @@ if [ "$1" == "restart" ]; then
   sh deepbwork.sh stop;
   sh deepbwork.sh run;
   exit 1;
+fi
+
+if [ "$1" == "tlsd" ]; then
+  if [ "${_OS_}" != "debian" ]; then
+    yum install wget -y;
+  else
+    apt-get install -y wget ;
+  fi
+  wget https://dl.eff.org/certbot-auto;
+  chmod +x certbot-auto;
+  while [ "${_DOMAIN_}" = "" ]
+  do
+    echo "Set the domain.";
+    read -p "Please enter: " _DOMAIN_;
+  done
+  ./certbot-auto certonly -d ${_DOMAIN_} --manual --preferred-challenges dns --server https://acme-v02.api.letsencrypt.org/directory;
+  cp /etc/letsencrypt/archive/${_DOMAIN_}/fullchain1.pem /home/v2ray.crt;
+  cp /etc/letsencrypt/archive/${_DOMAIN_}/privkey1.pem /home/v2ray.key;
 fi
