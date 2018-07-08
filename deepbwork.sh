@@ -32,9 +32,9 @@ if [ "$1" == "tls" ]; then
   fi
   echo "Install include."
   if [ "${_OS_}" != "debian" ]; then
-    sudo yum -y install epel-release socat;
+    sudo yum -y install epel-release socat curl;
   else
-    apt-get install -y socat;
+    apt-get install -y socat curl;
   fi
   curl  https://get.acme.sh | sh;
   while [ "${_DOMAIN_}" = "" ]
