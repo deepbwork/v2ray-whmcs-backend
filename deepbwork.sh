@@ -70,6 +70,11 @@ if [ "$1" == "init" ]; then
     echo "Set the token.";
     read -p "Please enter: " _TOKEN_;
   done
+  while [ "${_PORT_}" = "" ]
+  do
+    echo "Set the prot.";
+    read -p "Please enter: " _PORT_;
+  done
   while [ "${_RATE_}" = "" ]
   do
     echo "Set the rate.";
@@ -95,6 +100,7 @@ if [ "$1" == "init" ]; then
   cp -f ./conf.yaml.demo ./conf.yaml
   sed -i "s#_URL_#"${_URL_}"#g" ./conf.yaml;
   sed -i "s#_TOKEN_#"${_TOKEN_}"#g" ./conf.yaml;
+  sed -i "s#_PORT_#"${_PORT_}"#g" ./conf.yaml;
   sed -i "s#_RATE_#"${_RATE_}"#g" ./conf.yaml;
   sed -i "s#_DATABASENAME_#"${_DATABASENAME_}"#g" ./conf.yaml;
   sed -i "s#_LISCENSE_#"${_LISCENSE_}"#g" ./conf.yaml;
