@@ -45,6 +45,7 @@ sh deepbwork.sh stop
 |uri|v2ray_whmcs_api的server.php文件所在地址|
 |token|与用户数据库通信秘钥|
 |node|节点ID 暂时无用|
+|port|用户连接端口|
 |rate|倍率|
 |tls|是否使用TLS 1:启用 0:关闭|
 |client|默认|
