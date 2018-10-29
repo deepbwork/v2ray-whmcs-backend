@@ -142,6 +142,11 @@ if [ "$1" == "restart" ]; then
   exit 1;
 fi
 
+if [ "$1" == "min"]; then
+ /usr/bin/env v2ray.ray.buffer.size=1;
+ exit 1;
+fi
+
 if [ "$1" == "tlsd" ]; then
   if [ "${_OS_}" != "debian" ]; then
     yum install wget -y;
