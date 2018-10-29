@@ -6,8 +6,7 @@ api:
   rate:       _RATE_
   database:   _DATABASENAME_
   tls:        _TLS_
+  localport:  23333
 
 v2ray:
-  client:     127.0.0.1:23333
-  tag:        proxy
   liscense:   _LISCENSE_
