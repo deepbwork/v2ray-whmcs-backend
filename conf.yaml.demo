@@ -2,7 +2,7 @@ api:
   url:        _URL_
   token:      _TOKEN_
   port:       _PORT_
-  node:       1
+  node:       0
   rate:       _RATE_
   database:   _DATABASENAME_
   tls:        _TLS_
