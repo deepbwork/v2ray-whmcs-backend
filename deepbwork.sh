@@ -118,13 +118,14 @@ if [ "$1" == "run" ]; then
     echo "Stop firewalld service.";
     systemctl stop firewalld;
   fi
-  nohup ./v2ray-whmcs > /dev/null 2>&1 &
+  nohup `pwd`/whmcs > /dev/null 2>&1 &
   echo "Service Start";
   exit 1;
 fi
 
 if [ "$1" == "stop" ]; then
-  kill -9 $(ps -ef | grep v2ray | grep -v grep | awk '{print $2}');
+  kill -9 $(ps -ef | grep `pwd`/whmcs | grep -v grep | awk '{print $2}');
+  kill -9 $(ps -ef | grep defunct | grep -v grep | awk '{print $2}');
   rm -rf *.log;
   echo "Service Stop";
   exit 1;
