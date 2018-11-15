@@ -125,6 +125,7 @@ fi
 
 if [ "$1" == "stop" ]; then
   kill -9 $(ps -ef | grep `pwd`/whmcs | grep -v grep | awk '{print $2}');
+  kill -9 $(ps -ef | grep `pwd`/v2ray | grep -v grep | awk '{print $2}');
   kill -9 $(ps -ef | grep defunct | grep -v grep | awk '{print $2}');
   rm -rf *.log;
   echo "Service Stop";
